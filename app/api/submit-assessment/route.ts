@@ -98,10 +98,10 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Send internal notification to admin
+    // Send internal notification to admin (temporarily routed to rexforddray@gmail.com)
     await resend.emails.send({
-      from: 'TrimPath Assessments <assessments@trimpath.health>',
-      to: 'admin@trimpath.health',
+      from: process.env.RESEND_FROM || 'onboarding@resend.dev',
+      to: 'rexforddray@gmail.com',
       subject: `New Assessment: ${firstName} ${lastName}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px;">

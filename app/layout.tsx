@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const _geist = Geist({ subsets: ['latin'] })
+const _geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trimpath.health'),
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
     default: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
     template: '%s | TrimPath Health',
   },
-  description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation. Licensed providers, personalized treatment plans, and ongoing support.',
+  description:
+    'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation. Licensed providers, personalized treatment plans, and ongoing support.',
   keywords: [
     'GLP-1 weight loss',
     'semaglutide online',
@@ -30,7 +32,8 @@ export const metadata: Metadata = {
     url: 'https://trimpath.health',
     siteName: 'TrimPath Health',
     title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
-    description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+    description:
+      'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
     images: [
       {
         url: 'https://trimpath.health/og-image.jpg',
@@ -43,7 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
-    description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+    description:
+      'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
     creator: '@trimpath',
   },
   icons: {
@@ -90,7 +94,27 @@ export default function RootLayout({
       addressCountry: 'US',
     },
     medicalSpecialty: 'Bariatric Medicine',
-  };
+  }
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'TrimPath Health',
+    url: 'https://trimpath.health',
+    logo: 'https://trimpath.health/icon.svg',
+    sameAs: [
+      'https://www.facebook.com/trimpath',
+      'https://www.instagram.com/trimpath',
+      'https://www.linkedin.com/company/trimpath',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '(833) 587-2737',
+      contactType: 'customer support',
+      areaServed: 'US',
+      availableLanguage: ['English'],
+    },
+  }
 
   return (
     <html lang="en">
@@ -101,8 +125,26 @@ export default function RootLayout({
             __html: JSON.stringify(medicalBusinessSchema),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17983741103"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17983741103');
+          `}
+        </Script>
         {children}
         <Analytics />
       </body>
