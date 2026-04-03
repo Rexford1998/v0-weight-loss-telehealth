@@ -34,7 +34,9 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'TrimPath Health <assessments@trimpath.health>',
+      from:
+        process.env.RESEND_FROM ||
+        'TrimPath Health <assessments@kashkitchen.com>',
       to: email,
       subject: 'Thank You for Your Assessment - We\'ll Review Your Information',
       html: `
@@ -100,7 +102,9 @@ export async function POST(request: NextRequest) {
 
     // Send internal notification to admin (temporarily routed to rexforddray@gmail.com)
     await resend.emails.send({
-      from: process.env.RESEND_FROM || 'onboarding@resend.dev',
+      from:
+        process.env.RESEND_FROM ||
+        'TrimPath Assessments <assessments@kashkitchen.com>',
       to: 'rexforddray@gmail.com',
       subject: `New Assessment: ${firstName} ${lastName}`,
       html: `

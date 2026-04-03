@@ -18,7 +18,9 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'TrimPath Health <support@trimpath.health>',
+      from:
+        process.env.RESEND_FROM ||
+        'TrimPath Health <support@kashkitchen.com>',
       to: email,
       subject: 'We Received Your Message - TrimPath Health',
       html: `
@@ -58,8 +60,10 @@ export async function POST(request: NextRequest) {
 
     // Send internal notification to support
     await resend.emails.send({
-      from: 'TrimPath Support <support@trimpath.health>',
-      to: 'support@trimpath.health',
+      from:
+        process.env.RESEND_FROM ||
+        'TrimPath Support <support@kashkitchen.com>',
+      to: 'support@kashkitchen.com',
       subject: `New Contact Form: ${subject}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px;">
