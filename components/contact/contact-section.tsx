@@ -5,11 +5,13 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,14 +19,35 @@ export function ContactSection() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send to an API
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/send-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setSubmitted(true);
+      toast.success('Message sent successfully!');
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -123,6 +146,7 @@ export function ContactSection() {
                       setFormData({ ...formData, name: e.target.value })
                     }
                     className="mt-2"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -140,6 +164,7 @@ export function ContactSection() {
                       setFormData({ ...formData, email: e.target.value })
                     }
                     className="mt-2"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -157,6 +182,7 @@ export function ContactSection() {
                       setFormData({ ...formData, subject: e.target.value })
                     }
                     className="mt-2"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -173,15 +199,24 @@ export function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="mt-2 w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-foreground"
+                    className="mt-2 w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 <Button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full bg-primary hover:bg-primary/90 text-white"
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </Button>
               </form>
             )}

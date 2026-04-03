@@ -10,6 +10,8 @@ import { FormStep3 } from './form-step-3';
 import { FormStep4 } from './form-step-4';
 import { FormStep5 } from './form-step-5';
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 export interface AssessmentData {
   // Step 1
@@ -21,16 +23,22 @@ export interface AssessmentData {
   goalWeight?: string;
   timeline?: string;
   motivation?: string;
+  goal?: string;
+  timeframe?: string;
   // Step 3
   conditions?: string[];
   medications?: string;
   pancreatitis?: string;
   pregnancy?: string;
+  hasType2Diabetes?: boolean;
+  familyHistoryObesity?: boolean;
   // Step 4
   exercise?: string;
   diet?: string;
   sleep?: string;
   stress?: string;
+  exerciseFrequency?: string;
+  dietType?: string;
   // Step 5
   firstName?: string;
   lastName?: string;
@@ -44,6 +52,7 @@ export function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<AssessmentData>({});
   const [showResults, setShowResults] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const totalSteps = 5;
 
@@ -63,10 +72,38 @@ export function MultiStepForm() {
     }
   };
 
-  const handleSubmit = () => {
-    // Store data in session storage for results page
-    sessionStorage.setItem('assessmentData', JSON.stringify(data));
-    setShowResults(true);
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      // Validate required fields
+      if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.consent) {
+        toast.error('Please fill in all required fields');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const response = await fetch('/api/submit-assessment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit assessment');
+      }
+
+      // Store data in session storage for results page
+      sessionStorage.setItem('assessmentData', JSON.stringify(data));
+      toast.success('Assessment submitted successfully!');
+      setShowResults(true);
+    } catch (error) {
+      console.error('Assessment submission error:', error);
+      toast.error('Failed to submit assessment. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (showResults) {
@@ -124,7 +161,7 @@ export function MultiStepForm() {
             <Button
               onClick={goToPreviousStep}
               variant="outline"
-              disabled={step === 1}
+              disabled={step === 1 || isSubmitting}
               className="flex-1"
             >
               Back
@@ -132,6 +169,7 @@ export function MultiStepForm() {
             {step < totalSteps ? (
               <Button
                 onClick={goToNextStep}
+                disabled={isSubmitting}
                 className="flex-1 bg-primary hover:bg-primary/90"
               >
                 Next
@@ -139,9 +177,17 @@ export function MultiStepForm() {
             ) : (
               <Button
                 onClick={handleSubmit}
+                disabled={isSubmitting}
                 className="flex-1 bg-secondary hover:bg-secondary/90"
               >
-                Submit Assessment
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit Assessment'
+                )}
               </Button>
             )}
           </div>
