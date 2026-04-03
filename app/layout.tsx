@@ -7,9 +7,45 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+  metadataBase: new URL('https://trimpath.health'),
+  title: {
+    default: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    template: '%s | TrimPath Health',
+  },
   description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation. Licensed providers, personalized treatment plans, and ongoing support.',
+  keywords: [
+    'GLP-1 weight loss',
+    'semaglutide online',
+    'telehealth weight loss',
+    'prescription weight loss',
+    'weight loss injections',
+    'ozempic alternative',
+    'online doctor consultation',
+    'weight loss medication',
+  ],
   generator: 'v0.app',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://trimpath.health',
+    siteName: 'TrimPath Health',
+    title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+    images: [
+      {
+        url: 'https://trimpath.health/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'TrimPath Health',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    description: 'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+    creator: '@trimpath',
+  },
   icons: {
     icon: [
       {
@@ -40,8 +76,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const medicalBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    name: 'TrimPath Health',
+    description:
+      'Telehealth weight loss consultation and GLP-1 prescription service',
+    url: 'https://trimpath.health',
+    telephone: '(833) 587-2737',
+    email: 'support@trimpath.health',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'US',
+    },
+    medicalSpecialty: 'Bariatric Medicine',
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(medicalBusinessSchema),
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <Analytics />
