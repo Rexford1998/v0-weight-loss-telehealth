@@ -17,6 +17,8 @@ export interface AssessmentData {
   // Step 1
   age?: string;
   sex?: string;
+  heightFeet?: string;
+  heightInches?: string;
   height?: string;
   weight?: string;
   // Step 2

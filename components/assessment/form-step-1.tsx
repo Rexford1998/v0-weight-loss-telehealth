@@ -60,21 +60,39 @@ export function FormStep1({ data, onChange }: FormStep1Props) {
           </Select>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="height" className="text-sm font-semibold">
-              Height (inches) *
+        <div className="grid grid-cols-3 gap-4">
+          <div className="col-span-2">
+            <Label className="text-sm font-semibold">
+              Height *
             </Label>
-            <Input
-              id="height"
-              type="number"
-              min="36"
-              max="120"
-              placeholder="E.g., 70"
-              value={data.height || ''}
-              onChange={(e) => onChange({ height: e.target.value })}
-              className="mt-2"
-            />
+            <div className="flex gap-2 mt-2">
+              <div className="flex-1">
+                <Input
+                  type="number"
+                  min="4"
+                  max="8"
+                  placeholder="Feet"
+                  value={data.heightFeet || ''}
+                  onChange={(e) => onChange({ heightFeet: e.target.value })}
+                  aria-label="Height in feet"
+                  className="text-center"
+                />
+              </div>
+              <div className="flex items-center text-muted-foreground">ft</div>
+              <div className="flex-1">
+                <Input
+                  type="number"
+                  min="0"
+                  max="11"
+                  placeholder="Inches"
+                  value={data.heightInches || ''}
+                  onChange={(e) => onChange({ heightInches: e.target.value })}
+                  aria-label="Height in inches"
+                  className="text-center"
+                />
+              </div>
+              <div className="flex items-center text-muted-foreground">in</div>
+            </div>
           </div>
 
           <div>
