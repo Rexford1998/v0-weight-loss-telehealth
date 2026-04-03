@@ -19,7 +19,7 @@ export function Footer() {
               <span className="font-bold text-lg">TrimPath Health</span>
             </div>
             <p className="text-card/70 text-sm leading-relaxed">
-              Doctor-reviewed GLP-1 treatment for sustainable weight loss through telehealth.
+              Doctor-led, provider-reviewed weight management consultations with clinically appropriate options.
             </p>
           </div>
 

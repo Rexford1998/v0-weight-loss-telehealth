@@ -16,8 +16,8 @@ export function HowItWorksSection() {
     },
     {
       icon: Pill,
-      title: 'Prescription',
-      description: 'If medically appropriate, receive your personalized prescription and guidance.'
+      title: 'Treatment Decision',
+      description: 'If appropriate, your provider may discuss options such as GLP-1 medication as part of a broader plan.'
     },
     {
       icon: TrendingUp,

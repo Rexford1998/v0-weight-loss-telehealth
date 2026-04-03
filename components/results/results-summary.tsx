@@ -84,12 +84,12 @@ export function ResultsSummary() {
               4
             </div>
             <div>
-              <p className="font-semibold text-foreground">Prescription & Support</p>
-              <p className="text-sm text-muted-foreground">
-                If medically appropriate, receive your prescription and begin ongoing support.
-              </p>
-            </div>
-          </div>
+          <p className="font-semibold text-foreground">Treatment Plan</p>
+          <p className="text-sm text-muted-foreground">
+            If clinically appropriate, your provider may recommend a plan that can include medication along with lifestyle support.
+          </p>
+        </div>
+      </div>
         </div>
       </Card>
 

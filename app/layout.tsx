@@ -10,20 +10,18 @@ const _geistMono = Geist_Mono({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://trimpath.health'),
   title: {
-    default: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    default: 'TrimPath Health | Doctor-Led Weight Management Consultations',
     template: '%s | TrimPath Health',
   },
   description:
-    'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation. Licensed providers, personalized treatment plans, and ongoing support.',
+    'Online consultations with licensed providers for weight management. Treatment options, including GLP-1, are discussed only if clinically appropriate after evaluation.',
   keywords: [
-    'GLP-1 weight loss',
-    'semaglutide online',
-    'telehealth weight loss',
-    'prescription weight loss',
-    'weight loss injections',
-    'ozempic alternative',
-    'online doctor consultation',
-    'weight loss medication',
+    'doctor-led weight management',
+    'telehealth weight loss consultation',
+    'provider reviewed treatment',
+    'medically appropriate care',
+    'online health assessment',
+    'clinical weight management program',
   ],
   generator: 'v0.app',
   openGraph: {
@@ -31,9 +29,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://trimpath.health',
     siteName: 'TrimPath Health',
-    title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    title: 'TrimPath Health | Doctor-Led Weight Management Consultations',
     description:
-      'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+      'Online consultation with licensed providers for weight management; treatment options discussed only if clinically appropriate.',
     images: [
       {
         url: 'https://trimpath.health/og-image.jpg',
@@ -45,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TrimPath Health | GLP-1 Weight Loss Telehealth',
+    title: 'TrimPath Health | Doctor-Led Weight Management Consultations',
     description:
-      'Get doctor-reviewed GLP-1 prescription for weight loss through a simple online consultation.',
+      'Online consultation with licensed providers; treatment options considered only when appropriate.',
     creator: '@trimpath',
   },
   icons: {
@@ -142,7 +140,8 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17983741103');
+            gtag('set', 'allow_ad_personalization_signals', false);
+            gtag('config', 'AW-17983741103', { allow_ad_personalization_signals: false });
           `}
         </Script>
         {children}

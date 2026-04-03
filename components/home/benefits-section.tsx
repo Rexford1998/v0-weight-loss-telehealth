@@ -8,7 +8,7 @@ export function BenefitsSection() {
     {
       icon: Zap,
       title: 'Fast Results',
-      description: 'Many people see initial weight loss within 2-4 weeks of starting treatment.'
+      description: 'Some patients notice early changes within the first month; timelines vary by individual and clinical plan.'
     },
     {
       icon: Heart,
@@ -35,7 +35,7 @@ export function BenefitsSection() {
             Why Choose TrimPath Health?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Science-backed treatment with the support and oversight you need
+            Science-backed care with provider oversight at every step
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export function BenefitsSection() {
         {/* Bottom note */}
         <div className="mt-12 p-6 bg-primary/5 border border-primary/10 rounded-xl">
           <p className="text-sm text-muted-foreground text-center">
-            Results vary by individual. GLP-1 medications are prescription-only and require doctor approval based on medical evaluation.
+            Results vary by individual. Any medication option is prescription-only and considered only after a provider evaluates your medical history.
           </p>
         </div>
       </div>

@@ -13,11 +13,11 @@ export function HeroSection() {
           {/* Left Column - Text */}
           <div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              Doctor-Reviewed GLP-1 Weight Loss Treatment
+              Doctor-Led Online Weight Management Program
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl text-pretty">
-              Get personalized weight loss treatment from licensed providers. Simple online consultation,
-              prescription if medically appropriate, and ongoing support—all from home.
+              Get a provider-reviewed plan for weight management through a simple online consultation.
+              Medication options, including GLP-1, are considered only after clinical evaluation.
             </p>
 
             {/* Trust Badges */}

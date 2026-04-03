@@ -9,21 +9,20 @@ import { PricingSection } from '@/components/home/pricing-section';
 import { FAQSection } from '@/components/home/faq-section';
 
 export const metadata: Metadata = {
-  title: 'Telehealth Weight Loss with GLP-1 | TrimPath Health',
+  title: 'Doctor-Led Weight Management Online | TrimPath Health',
   description:
-    'Get a doctor-reviewed GLP-1 prescription for weight loss in minutes. Simple online consultation with licensed physicians. Free assessment, no commitment required.',
+    'Book an online consultation with licensed providers for weight management. Treatment options, including GLP-1, are considered only after clinical evaluation. Free assessment.',
   keywords: [
-    'GLP-1 weight loss',
-    'semaglutide online',
-    'telehealth weight loss',
-    'online weight loss doctor',
-    'GLP-1 prescription online',
-    'weight loss consultation',
+    'doctor-led weight management',
+    'telehealth weight loss consultation',
+    'provider reviewed treatment',
+    'online health assessment',
+    'medically appropriate care',
   ],
   openGraph: {
-    title: 'Telehealth Weight Loss with GLP-1 | TrimPath Health',
+    title: 'Doctor-Led Weight Management Online | TrimPath Health',
     description:
-      'Get a doctor-reviewed GLP-1 prescription for weight loss. Free assessment with no commitment.',
+      'Licensed providers review your health and discuss treatment options if appropriate. Free online assessment.',
     type: 'website',
   },
 };

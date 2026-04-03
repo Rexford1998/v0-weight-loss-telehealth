@@ -11,7 +11,7 @@ export function FAQSection() {
   const faqs = [
     {
       question: 'Is GLP-1 treatment safe?',
-      answer: 'GLP-1 medications are FDA-approved for weight loss and have been used safely for diabetes management for years. All treatments are prescribed by licensed doctors who review your health history and monitor your progress. Side effects are typically mild and manageable.'
+      answer: 'Certain GLP-1 medications are FDA-approved for weight management. A licensed provider will review your health history to determine if one is appropriate for you and will monitor your progress if prescribed.'
     },
     {
       question: 'How long does the assessment take?',
@@ -19,15 +19,15 @@ export function FAQSection() {
     },
     {
       question: 'Will I need to take medication forever?',
-      answer: 'Treatment duration varies by individual and is determined with your doctor. Some people use GLP-1 for a specific period, while others benefit from longer-term treatment. Your provider will discuss the best approach for your goals.'
+      answer: 'Duration depends on your goals and medical profile. Your provider will recommend a plan and timeline that fits your needs, and may adjust over time.'
     },
     {
       question: 'Does insurance cover this?',
-      answer: 'Coverage varies by insurance plan and your specific diagnosis. Our team can help you understand your coverage. Many insurance plans do cover GLP-1 medications. We\'ll also explore options if your plan doesn\'t cover it.'
+      answer: 'Coverage depends on your insurer, diagnosis, and plan. We can help you ask informed questions, but your provider and insurer determine eligibility and coverage.'
     },
     {
       question: 'What if I\'m not eligible?',
-      answer: 'If you\'re not a candidate for GLP-1 treatment, our providers can discuss alternative options that might work for you or recommend other resources to support your wellness goals.'
+      answer: 'If GLP-1 is not appropriate, your provider will discuss other evidence-based options and supportive resources that fit your health profile.'
     },
     {
       question: 'How often will I see my doctor?',
@@ -43,7 +43,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Find answers to common questions about GLP-1 treatment and our service
+            Find answers to common questions about our provider-led weight management service
           </p>
         </div>
 
